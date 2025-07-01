@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="view_lc_management_form" model="ir.ui.view">
+        <field name="name">lc.management.form</field>
+        <field name="model">lc.management</field>
+        <field name="arch" type="xml">
+            <form string="LC management">
+                <header>
+                    <button name="action_approve" string="Approve" type="object"
+                            invisible="status != 'draft'" class="btn-primary"/>
+                    <button name="action_close" string="Close" type="object"
+                            invisible="status != 'approved'" class="btn-primary"/>
+                    <field name="status" widget="statusbar"/>
+                </header>
+                <sheet>
+                    <h2><strong><field name="name"/></strong></h2>
+                    <group>
+                        <!-- Row 1 -->
+                        <group>
+                            <field name="request_date" readonly="status != 'draft'"/>
+                            <field name="total_amount"/>
+                            <field name="currency_id" invisible="1" class="oe_inline"/>
+                        </group>
+                        <group>
+                            <field name="status" readonly="1"/>
+                            <field name="purchase_order_ids" widget="many2many_tags" readonly="status != 'draft'"/>
+                            <field name="document_ids" widget="many2many_binary" readonly="status != 'draft'"/>
+                        </group>
+
+                        <!-- Row 2 -->
+                        <group>
+                            <field name="bank_name"/>
+                        </group>
+                        <group>
+                            <field name="lc_no"/>
+                            <field name="date"/>
+                        </group>
+
+                        <!-- Row 3 -->
+                        <group>
+                            <field name="beneficiary_name"/>
+                        </group>
+                        <group>
+                            <field name="beneficiary_state"/>
+                            <field name="beneficiary_country"/>
+                        </group>
+
+                        <!-- Row 4 -->
+                        <group>
+                            <field name="openers_name"/>
+                        </group>
+                        <group>
+                            <field name="openers_state"/>
+                            <field name="openers_country"/>
+                        </group>
+
+                        <!-- Row 5 -->
+                        <group>
+                            <field name="bd_bank_registration_no"/>
+                            <field name="hs_code"/>
+                        </group>
+                        <group>
+                            <field name="import_licence_no"/>
+                            <field name="irc_no"/>
+                        </group>
+                    </group>
+
+                    <!-- Bottom Full Row -->
+                    <group>
+                        <group colspan="2">
+                            <field name="terms_and_conditions" nolabel="1" colspan="4"/>
+                        </group>
+                    </group>
+                </sheet>
+
+            </form>
+        </field>
+    </record>
+
+    <record id="view_lc_management_list" model="ir.ui.view">
+        <field name="name">lc.management.list</field>
+        <field name="model">lc.management</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="name"/>
+                <field name="request_date"/>
+                <!--                <field name="partner_id"/>-->
+                <field name="total_amount"/>
+                <field name="status"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="action_lc_management" model="ir.actions.act_window">
+        <field name="name">LC managements</field>
+        <field name="res_model">lc.management</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+    <menuitem id="lc_management_root" name="LC Management" parent="purchase.menu_purchase_root" sequence="10"/>
+    <menuitem id="menu_lc_management" name="LC Management" parent="lc_management_root" action="action_lc_management"/>
+</odoo>

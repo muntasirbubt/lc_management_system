@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="seq_lc_management" model="ir.sequence">
+        <field name="name">LC Management</field>
+        <field name="code">lc.management</field>
+        <field name="prefix">LC-</field>
+        <field name="padding">5</field>
+        <field name="number_next">1</field>
+    </record>
+</odoo>
