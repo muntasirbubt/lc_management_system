@@ -20,3 +20,5 @@ A custom Odoo 18 module for managing **Letter of Credit (LC)** operations in the
 - then update the app list 
 - After this install the module lc_managment_system
 
+- https://github.com/muntasirbubt/lc_management_system.git
+
